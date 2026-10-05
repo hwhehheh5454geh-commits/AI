@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 
-# تثبيت متصفح Google Chrome والمكتبات الأساسية
+# تثبيت الحزم والمتصفح
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
@@ -19,3 +19,4 @@ COPY . .
 EXPOSE 5000
 
 CMD ["python", "app.py"]
+
