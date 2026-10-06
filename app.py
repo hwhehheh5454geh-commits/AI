@@ -1,9 +1,9 @@
+
 import os
 from flask import Flask, request, jsonify
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 app = Flask(__name__)
 
@@ -14,7 +14,10 @@ def get_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
     
-    service = Service(ChromeDriverManager().install())
+    # تحديد مسار المتصفح والمشغل المثبتين بالنظام
+    chrome_options.binary_location = "/usr/bin/chromium"
+    service = Service("/usr/bin/chromedriver")
+    
     return webdriver.Chrome(service=service, options=chrome_options)
 
 @app.route('/ask', methods=['POST'])
